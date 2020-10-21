@@ -19,11 +19,19 @@
     <section id="events">
       <h2>Events in Action</h2>
       <button @click='add(5)'>Add 5</button>
-      <button @click='reduce(5)'>Reduce 5</button>
+      <!-- <button @click='reduce(5)'>Reduce 5</button> -->
+      <button @click.right='reduce(5)'>Reduce 5</button>
+      <!-- Will stay at the initial value with 'v-once' -->
+      <p v-once>Starting Counter: {{ counter }}</p>
       <p>Result: {{ counter }}</p>
       <!-- <input type="text" @input='setName'> -->
-      <input type="text" @input="setName($event, 'Piccoli')">
-      <p>Your Name: {{ name }}</p>
+      <input type="text" @input="setName($event, 'Piccoli')" @keyup.enter="confirmInput">
+      <p>Your Name: {{ confirmedName }}</p>
+      <!-- '.prevent' is equal to adding 'event.preventDefault()' inside the function body -->
+      <form @submit.prevent='submitForm'> 
+        <input type="text">
+        <button>Sign Up</button>
+      </form>
     </section>
   </body>
 </html>
